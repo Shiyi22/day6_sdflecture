@@ -75,10 +75,14 @@ public final class App {
         MyRunnableInterface<String> concatString = (a ,b) -> {
             return a + b; 
         };
+        MyStringInterface printString = (a) -> {
+            System.out.println(a); 
+        }; 
 
         System.out.printf("addOperation: %d\n", addOperation.process(1, 1));
         System.out.printf("multiplyOperation: %d\n", multiplyOperation.process(2,5));
         System.out.printf("minusOperation: %d\n", minusOperation.process(2,5));
         System.out.printf("concatString: %s\n", concatString.process("The quick brown fox ", "jumps over the wall."));
+        printString.printMessage("Let's take a break at 12pm.");
     }
 }
