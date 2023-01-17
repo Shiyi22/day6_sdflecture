@@ -54,12 +54,31 @@ public final class App {
         // executorService.execute(mRI5); 
         // executorService.shutdown(); // to release the memory 
 
-        ExecutorService executorService = Executors.newCachedThreadPool();
+        ExecutorService executorService = Executors.newCachedThreadPool(); // threads will increase if there are more task to execute >> up to max your processor can handle 
         executorService.execute(mRI);
         executorService.execute(mRI2); 
         executorService.execute(mRI3); 
         executorService.execute(mRI4);
         executorService.execute(mRI5); 
         executorService.shutdown(); // to release the memory 
+
+        // functional interface: below is the lambda expression 
+        MyRunnableInterface<Integer> addOperation = (a,b) -> {
+            return a + b; 
+        };
+        MyRunnableInterface<Integer> multiplyOperation = (a,b) -> {
+            return a * b; 
+        }; 
+        MyRunnableInterface<Integer> minusOperation = (a, b) -> {
+            return a - b; 
+        }; 
+        MyRunnableInterface<String> concatString = (a ,b) -> {
+            return a + b; 
+        };
+
+        System.out.printf("addOperation: %d\n", addOperation.process(1, 1));
+        System.out.printf("multiplyOperation: %d\n", multiplyOperation.process(2,5));
+        System.out.printf("minusOperation: %d\n", minusOperation.process(2,5));
+        System.out.printf("concatString: %s\n", concatString.process("The quick brown fox ", "jumps over the wall."));
     }
 }
